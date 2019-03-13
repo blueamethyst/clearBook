@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <!-- bower:css -->
+    <!-- endbower -->
+</head>
+<style>
+    .library {
+        border: solid #e3e3e3 1px;
+        height: 420px;
+        background-image: url( "img/lib_1.jpg" );
+    }
+
+    .bookTable {
+        border: solid #f3f3f3 1px;
+        height: 400px;
+    }
+
+    .scatter {
+        width: 100px;
+        height: 100px;
+        background: #d3d333;
+        float: left;
+        border: #4d5355 solid 1px;
+        text-align: center;
+        box-shadow: #4d5355 2px 2px 2px;
+        padding: 10px 10px;
+        margin: 5px 5px;
+
+    }
+
+    .slot {
+        width: 100px;
+        height: 100px;
+        border: solid 1px #d38e8e;
+        float : left;
+        margin : 10px 5px 10px 5px;
+        padding: 10px 10px;
+        background-color: #f3f3f3 ;
+        opacity: 0.8;
+    }
+</style>
+
+<body>
+
+
+    <div class="library">
+    </div>
+
+    <div class="bookTable">
+    </div>
+
+
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <!-- endbower -->
+
+    <script>
+        $(function () {
+            var books = [{
+                name: "걸리버여행기",
+                color: "#" + getRandomColor()
+            }, {
+                name: "톰소여의모험",
+                color: "#" + getRandomColor()
+            }, {
+                name: "탈무드",
+                color: "#" + getRandomColor()
+            }, {
+                name: "초한지",
+                color: "#" + getRandomColor()
+            }, {
+                name: "삼국지",
+                color: "#" + getRandomColor()
+            }, {
+                name: "왕오천축국전",
+                color: "#" + getRandomColor()
+            }, {
+                name: "나의라임오렌지나무",
+                color: "#" + getRandomColor()
+            }, {
+                name: "이상한 나라의 엘리스",
+                color: "#" + getRandomColor()
+            }, {
+                name: "노인과바다",
+                color: "#" + getRandomColor()
+            }, {
+                name: "어린왕자",
+                color: "#" + getRandomColor()
+            }, {
+                name: "홍길동전",
+                color: "#" + getRandomColor()
+            }, {
+                name: "장화홍련",
+                color: "#" + getRandomColor()
+            }, {
+                name: "이솝우화",
+                color: "#" + getRandomColor()
+            }, {
+                name: "80일간의 세계일주",
+                color: "#" + getRandomColor()
+            }, {
+                name: "열하일기",
+                color: "#" + getRandomColor()
+            }, {
+                name: "베니스의상인",
+                color: "#" + getRandomColor()
+            }, {
+                name: "빨간머리앤",
+                color: "#" + getRandomColor()
+            }, {
+                name: "소나기",
+                color: "#" + getRandomColor()
+            }];
+            shuffle(books);
+
+            books.forEach( function( book){
+                var $scatterBook = $('<div class="scatter">'+book.name+'</div>');
+                $scatterBook.css("background-color" , book.color);
+                $(".bookTable").append($scatterBook);
+            });
+
+            shuffle(books);
+
+            books.forEach( function( book){
+                var $slot = $('<div class="slot" data-name="'+book.name+'"></div>');
+                $slot.css("background-color", book.color);
+                $(".library").append($slot);
+            });
+
+            $(".scatter").draggable({
+                revert: true,
+                cursor: "move",
+                opacity: 0.8,
+                stack: ".scatter", 
+                start : function( event, ui){
+                    $(".scatter").css("zIndex",10);
+                    $(this).css("zIndex", 100);
+                }
+            });
+
+            $(".slot").droppable({
+                accept: ".scatter",
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop : function( event, ui){
+                    var slotName = $(this).data("name");
+                    var bookName = ui.draggable.text();
+
+                    if( slotName == bookName){
+                        ui.draggable.draggable("option", "revert", false);
+                        var droppableOffset = $(this).offset();
+                        var x = droppableOffset.left + 1;
+                        var y = droppableOffset.top + 1;
+                        ui.draggable.offset({ top: y, left: x });
+                        $( this ).addClass( "ui-state-highlight" )
+                    }
+                }
+            });
+        });
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+    </script>
+
+</body>
+
+</html>
