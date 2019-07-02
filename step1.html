@@ -12,21 +12,24 @@
  
     .library {
         border: solid #e3e3e3 1px;
-        height: 600px;
+        height: 560px;
         background-image: url( "img/lib_1.jpg" );
-        padding: 75px 50px 0px 50px;
+        padding: 50px 50px 0px 50px;
+
+        overflow: hidden;
     }
 
     .bookTable {
         margin-top : 30px;
         border: solid #f3f3f3 1px;
-        height: 400px;
+        height: 560px;
         background-image: url( "img/desk.jpg" );
+        padding: 50px 50px 0px 50px;
     }
 
     .scatter {
-        width: 100px;
-        height: 130px;
+        width: 148px;
+        height: 180px;
         background: #fff ;
         float: left;
         border: #4d5355 solid 1px;
@@ -38,15 +41,17 @@
     }
 
     .slot {
-        width: 104px;
-        height: 160px;
+        width: 150px;
+        height: 210px;
         border: solid 1px #434343;
         float : left;
         margin : 10px 5px 45px 5px;
         background-color: #fff ;
         opacity: 0.8;
         font-size: 8px;
-        overflow :auto;
+        overflow :hidden;
+        color: #fff;
+        text-shadow: 2px 2px 2px gray;
         
     }
 
@@ -61,7 +66,7 @@
 
     .slot-body {
         width : 100%;
-        height : 130px;
+        height : 180px;
     }
 </style>
 
@@ -100,52 +105,52 @@
         $(function () {
             var books = [{
                 name: "위키백과",
-                color: "#" + getRandomColor(),
+                color: "#0f0",
                 image : "./img/cover/000.jpg",
                 desc : "000"
             }, {
                 name: "어린이철학교실",
-                color: "#" + getRandomColor(),
+                color: "#f00",
                 image : "./img/cover/100.jpg",
                 desc : "100"
             }, {
                 name: "5대 종교이야기",
-                color: "#" + getRandomColor(),
+                color: "#CCCCCC",
                 image : "./img/cover/200.jpg",
                 desc : "200"
             }, {
                 name: "법의 이해",
-                color: "#" + getRandomColor(),
+                color: "#FF9900",
                 image : "./img/cover/300.jpg",
                 desc : "300"
             }, {
                 name: "씨앗은 어떻게 자랄까?",
-                color: "#" + getRandomColor(),
+                color: "#993300",
                 image : "./img/cover/400.jpg",
                 desc : "400"
             }, {
                 name: "전기가 나오는 축구고",
-                color: "#" + getRandomColor(),
+                color: "#33CCFF",
                 image : "./img/cover/500.jpg",
                 desc : "500"
             }, {
                 name: "피카소가 모나리자를 그린다면?",
-                color: "#" + getRandomColor(),
+                color: "#FFFF00",
                 image : "./img/cover/600.jpg",
                 desc : "600"
             }, {
                 name: "이해력이 쑥쑥 교과서 사자성어",
-                color: "#" + getRandomColor(),
+                color: "#66CC66",
                 image : "./img/cover/700.jpg",
                 desc : "700"
             }, {
                 name: "셜혹홈즈 미공개사건집",
-                color: "#" + getRandomColor(),
+                color: "#0000FF",
                 image : "./img/cover/800.jpg",
                 desc : "800"
             }, {
                 name: "안중근",
-                color: "#" + getRandomColor(),
+                color: "#990099",
                 image : "./img/cover/900.jpg",
                 desc : "900"
             }];
@@ -196,8 +201,8 @@
                     if( slotName == bookName){
                         ui.draggable.draggable("option", "revert", false);
                         var droppableOffset = $(this).offset();
-                        var x = droppableOffset.left + 1;
-                        var y = droppableOffset.top + 1;
+                        var x = droppableOffset.left ;
+                        var y = droppableOffset.top ;
                         ui.draggable.offset({ top: y, left: x });
                         $( this ).addClass( "ui-state-highlight" )
                     }
