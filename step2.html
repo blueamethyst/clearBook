@@ -1,0 +1,251 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- bower:css -->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- endbower -->
+</head>
+<style>
+ 
+    .library {
+        border: solid #e3e3e3 1px;
+        height: 620px;
+        background-image: url( "img/lib_1.jpg" );
+        padding: 75px 50px 0px 50px;
+    }
+
+    .bookTable {
+        margin-top : 30px;
+        border: solid #f3f3f3 1px;
+        height: 300px;
+        background-image: url( "img/desk.jpg" );
+        padding: 50px 10px 0px 50px;
+    }
+
+    .scatter {
+        width: 60px;
+        height: 130px;
+        background: #fff ;
+        float: left;
+        border: #4d5355 solid 1px;
+        text-align: center;
+        box-shadow: #4d5355 2px 2px 2px;
+        margin: 5px 5px;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .slot {
+        width: 64px;
+        height: 510px;
+        border: solid 1px #434343;
+        float : left;
+        margin : 10px 5px 45px 5px;
+        background-color: #fff ;
+        opacity: 0.8;
+        font-size: 8px;
+        overflow :auto;
+        border-radius: 5px;
+    }
+
+    .slot-title {
+        width : 100%;
+        height : 350px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        border-bottom: solid 1px #434343;
+    }
+
+    .slot-body {
+        width : 100%;
+        height : 130px;
+    }
+</style>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    2단계 책등 제목을 보고 청구기호 붙이기
+                </h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="library">
+                    
+                </div>
+            
+                <div class="bookTable">
+                </div>
+            </div>
+        </div>
+</div>
+    
+
+
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            var books = [{
+                name: "000",
+                color: "#" + getRandomColor(),
+                image : "./img/back/000-q.png",
+                imageA : "./img/back/000-a.png",
+                desc : "000"
+            },{
+                name: "100",
+                color: "#" + getRandomColor(),
+                image : "./img/back/100-q.png",
+                imageA : "./img/back/100-a.png",
+                desc : "100"
+            },{
+                name: "200",
+                color: "#" + getRandomColor(),
+                image : "./img/back/200-q.png",
+                imageA : "./img/back/200-a.png",
+                desc : "200"
+            },{
+                name: "300",
+                color: "#" + getRandomColor(),
+                image : "./img/back/300-q.png",
+                imageA : "./img/back/300-a.png",
+                desc : "300"
+            },{
+                name: "400",
+                color: "#" + getRandomColor(),
+                image : "./img/back/400-q.png",
+                imageA : "./img/back/400-a.png",
+                desc : "400"
+            },{
+                name: "500",
+                color: "#" + getRandomColor(),
+                image : "./img/back/500-q.png",
+                imageA : "./img/back/500-a.png",
+                desc : "500"
+            },{
+                name: "600",
+                color: "#" + getRandomColor(),
+                image : "./img/back/600-q.png",
+                imageA : "./img/back/600-a.png",
+                desc : "600"
+            },{
+                name: "700",
+                color: "#" + getRandomColor(),
+                image : "./img/back/700-q.png",
+                imageA : "./img/back/700-a.png",
+                desc : "700"
+            },{
+                name: "800",
+                color: "#" + getRandomColor(),
+                image : "./img/back/800-q.png",
+                imageA : "./img/back/800-a.png",
+                desc : "800"
+            },{
+                name: "900",
+                color: "#" + getRandomColor(),
+                image : "./img/back/900-q.png",
+                imageA : "./img/back/900-a.png",
+                desc : "900"
+            }];
+
+            shuffle(books);
+
+            books.forEach( function( book){
+                var $slot = $('<div class="slot" data-name="'+book.name+'"><div class="slot-title"></div><div class="slot-body"></div></div>');
+                $slot.find(".slot-title").append($("<img src='"+book.image+"' width='100%' >"));
+                $(".library").append($slot);
+            });
+
+            shuffle(books);
+
+            books.forEach( function( book){
+                var $scatterBook = $('<div class="scatter" data-name="'+book.name+'"></div>');
+                //$scatterBook.css("background-color" , book.color);
+                $scatterBook.append($("<img src='"+book.imageA+"' width='100%' data-name='"+book.name+"'>"));
+                //$scatterBook.css("background-image" , 'url( "'+book.image+'" )');
+                $(".bookTable").append($scatterBook);
+            });
+
+        
+
+            
+
+            $(".scatter").draggable({
+                revert: true,
+                cursor: "move",
+                opacity: 0.8,
+                stack: ".scatter", 
+                start : function( event, ui){
+                    $(".scatter").css("zIndex",10);
+                    $(this).css("zIndex", 100);
+                }
+            });
+
+            $(".slot-body").droppable({
+                accept: ".scatter",
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop : function( event, ui){
+                    var slotName = $(this).parent().data("name");
+                    var bookName = ui.draggable.data("name");
+
+                    if( slotName == bookName){
+                        ui.draggable.draggable("option", "revert", false);
+                        var droppableOffset = $(this).offset();
+                        var x = droppableOffset.left + 1;
+                        var y = droppableOffset.top + 1;
+                        ui.draggable.offset({ top: y, left: x });
+                        $( this ).addClass( "ui-state-highlight" )
+                    }
+                }
+            });
+        });
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+    </script>
+
+</body>
+
+</html>

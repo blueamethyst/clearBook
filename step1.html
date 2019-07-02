@@ -1,0 +1,239 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- bower:css -->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- endbower -->
+</head>
+<style>
+ 
+    .library {
+        border: solid #e3e3e3 1px;
+        height: 600px;
+        background-image: url( "img/lib_1.jpg" );
+        padding: 75px 50px 0px 50px;
+    }
+
+    .bookTable {
+        margin-top : 30px;
+        border: solid #f3f3f3 1px;
+        height: 400px;
+        background-image: url( "img/desk.jpg" );
+    }
+
+    .scatter {
+        width: 100px;
+        height: 130px;
+        background: #fff ;
+        float: left;
+        border: #4d5355 solid 1px;
+        text-align: center;
+        box-shadow: #4d5355 2px 2px 2px;
+        margin: 5px 5px;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+
+    .slot {
+        width: 104px;
+        height: 160px;
+        border: solid 1px #434343;
+        float : left;
+        margin : 10px 5px 45px 5px;
+        background-color: #fff ;
+        opacity: 0.8;
+        font-size: 8px;
+        overflow :auto;
+        
+    }
+
+    .slot-title {
+        width : 100%;
+        height : 30px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        border-bottom: solid 1px #434343;
+    }
+
+    .slot-body {
+        width : 100%;
+        height : 130px;
+    }
+</style>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    1단계 도서 제목으로 십진분류 하기
+                </h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="library">
+                    
+                </div>
+            
+                <div class="bookTable">
+                </div>
+            </div>
+        </div>
+</div>
+    
+
+
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            var books = [{
+                name: "위키백과",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/000.jpg",
+                desc : "000"
+            }, {
+                name: "어린이철학교실",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/100.jpg",
+                desc : "100"
+            }, {
+                name: "5대 종교이야기",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/200.jpg",
+                desc : "200"
+            }, {
+                name: "법의 이해",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/300.jpg",
+                desc : "300"
+            }, {
+                name: "씨앗은 어떻게 자랄까?",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/400.jpg",
+                desc : "400"
+            }, {
+                name: "전기가 나오는 축구고",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/500.jpg",
+                desc : "500"
+            }, {
+                name: "피카소가 모나리자를 그린다면?",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/600.jpg",
+                desc : "600"
+            }, {
+                name: "이해력이 쑥쑥 교과서 사자성어",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/700.jpg",
+                desc : "700"
+            }, {
+                name: "셜혹홈즈 미공개사건집",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/800.jpg",
+                desc : "800"
+            }, {
+                name: "안중근",
+                color: "#" + getRandomColor(),
+                image : "./img/cover/900.jpg",
+                desc : "900"
+            }];
+
+            //shuffle(books);
+
+            books.forEach( function( book){
+                var $slot = $('<div class="slot" data-name="'+book.name+'"><div class="slot-title">'+book.desc+'</div><div class="slot-body"></div></div>');
+                $slot.find(".slot-title").css("background-color", book.color);
+                $(".library").append($slot);
+            });
+
+            shuffle(books);
+
+            books.forEach( function( book){
+                var $scatterBook = $('<div class="scatter" ></div>');
+                //$scatterBook.css("background-color" , book.color);
+                $scatterBook.append($("<img src='"+book.image+"' width='100%' data-name='"+book.name+"'>"));
+                //$scatterBook.css("background-image" , 'url( "'+book.image+'" )');
+                $(".bookTable").append($scatterBook);
+            });
+
+        
+
+            
+
+            $(".scatter").draggable({
+                revert: true,
+                cursor: "move",
+                opacity: 0.8,
+                stack: ".scatter", 
+                start : function( event, ui){
+                    $(".scatter").css("zIndex",10);
+                    $(this).css("zIndex", 100);
+                }
+            });
+
+            $(".slot-body").droppable({
+                accept: ".scatter",
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop : function( event, ui){
+                    var slotName = $(this).data("name");
+                    var bookName = ui.draggable.data("name");
+
+                    if( slotName == bookName){
+                        ui.draggable.draggable("option", "revert", false);
+                        var droppableOffset = $(this).offset();
+                        var x = droppableOffset.left + 1;
+                        var y = droppableOffset.top + 1;
+                        ui.draggable.offset({ top: y, left: x });
+                        $( this ).addClass( "ui-state-highlight" )
+                    }
+                }
+            });
+        });
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+    </script>
+
+</body>
+
+</html>

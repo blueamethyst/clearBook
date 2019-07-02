@@ -1,97 +1,33 @@
 <html>
 
 <head>
-        <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <!-- bower:css -->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- endbower -->
 </head>
 <style>
-    body {
-        padding: 10px 10px;
-    }
-    .library {
-        border: solid #e3e3e3 1px;
-        height: 600px;
-        background-image: url( "img/lib_1.jpg" );
-        padding: 75px 50px 0px 50px;
-    }
-
-    .bookTable {
-        margin-top : 30px;
-        border: solid #f3f3f3 1px;
-        height: 400px;
-        background-image: url( "img/desk.jpg" );
-    }
-
-    .scatter {
-        width: 100px;
-        height: 130px;
-        background: #fff ;
-        float: left;
-        border: #4d5355 solid 1px;
-        text-align: center;
-        box-shadow: #4d5355 2px 2px 2px;
-        margin: 5px 5px;
-        background-repeat: no-repeat;
-    }
-
-    .slot {
-        width: 100px;
-        height: 130px;
-        border: solid 1px #d38e8e;
-        float : left;
-        margin : 10px 5px 45px 5px;
-        background-color: #ecf5a0 ;
-        opacity: 0.8;
-        font-size: 8px;
-        overflow :auto;
-        padding : 2px 2px;
-        
-    }
+    
 </style>
 
 <body>
-<div class="row front">
-    <div class="col-md-12 ">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                신나는 도서관 활동
-            </div>
+<div class="container">
+    <div class="row" style="border:solid 2px #a3a3a3; padding: 10px 10px;margin:20px 20px;">
+        <div class="col-md-12 text-center mb-2">
+            <h3 style="margin-top:40px;">신나는 도서관 활동</h3>
+            <h1>보고, 느끼고 만지는 십진분류(KDC)</h1>
+        </div>
+
+        <div class="col-md-6 offset-md-3 text-center" style="margin-top:30px;">
+            <div style="margin-bottom: 15px"><a href="./step1.html" class="btn btn-lg btn-outline-dark" type="button">1단계 도서 제목으로 십진분류 하기</a></div>
+            <div style="margin-bottom: 15px"><a href="./step2.html" class="btn btn-lg btn-outline-dark" type="button">2단계 책등 제목을 보고 청구기호 붙이기</a></div>
+            <div style="margin-bottom: 15px"><a href="./step3.html" class="btn btn-lg btn-outline-dark" type="button">3단계 청구기호 순으로 책꽂이에 꽂기</a></div>
         </div>
 
     </div>
 </div>
-
-<div class="row step step1">
-    <div class="col-md-12">
-
-    </div>
-</div>
-
-<div class="row step step2">
-    <div class="col-md-12">
-
-    </div>
-</div>
-
-
-<div class="row step step3">
-    <div class="col-md-12">
-
-    </div>
-</div>
-
-<div class="row step step4">
-    <div class="col-md-12">
-        <div class="library">
-        </div>
-    
-        <div class="bookTable">
-        </div>
-    </div>
-</div>
-    
-
 
 
     <!-- bower:js -->
@@ -99,178 +35,10 @@
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <!-- endbower -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script>
-        $(function () {
-            var books = [{
-                name: "걸리버여행기",
-                color: "#" + getRandomColor(),
-                image : "걸리버여행기.jpg",
-                desc : "의사 걸리버가 선의로 취직해 세계를 돌아다니다 작은 사람들이 사는 나라 릴리퍼트, 큰 사람들이 사는 나라 브롭딩낵, 날아다니는 섬의 나라 라퓨타, 말(馬) 모양을 한 지성체 휴이넘이 지배하는 나라를 방문하게 되는 기행문 형식을 띤 소설이다."
-            }, {
-                name: "톰소여의모험",
-                color: "#" + getRandomColor(),
-                image : "톰소여의모험.jpg",
-                desc : " 거짓말을 잘 하고 잠시도 가만히 있지 못하는 말썽꾸러기 소년의 이야기이다. "
-            }, {
-                name: "탈무드",
-                color: "#" + getRandomColor(),
-                image : "탈무드.jpg",
-                desc : "유태인의 생각하는 방식을 배우게 하는 책"
-            }, {
-                name: "초한지",
-                color: "#" + getRandomColor(),
-                image : "초한지.jpg",
-                desc : "중국의 역사 소설이다. 진나라 말기 초나라 항우와 한나라 유방의 기나긴 대립을 묘사하고 있다."
-            }, {
-                name: "삼국지",
-                color: "#" + getRandomColor(),
-                image : "삼국지.jpg",
-                desc : " 서진의 진수가 쓰고 송나라의 배송지가 내용을 보충한 중국 삼국시대의 사찬(私撰) 역사서이다. 후한 말기부터 서진 초까지의 역사를 다루고 있다."
-            }, {
-                name: "왕오천축국전",
-                color: "#" + getRandomColor(),
-                image : "왕오천축국전.jpg",
-                desc : "신라 성덕왕 때, 승려 혜초가 인도 5국(五國) 부근의 여러 나라를 순례하고 그 행적을 적은 여행기이다."
-            }, {
-                name: "나의라임오렌지나무",
-                color: "#" + getRandomColor(),
-                image : "나의라임오렌지나무.jpg",
-                desc : "제제는 브라질에 사는 5살짜리 소년이다. 가난한 생활 속에서 개구쟁이의 모습으로 어린 동생 루이스, 라임오렌지나무 밍기뉴, 학교 선생님, 포르투갈 사람인 뽀르뚜가 아저씨 등과 사랑과 우정을 나누며 성장해간다"
-            }, {
-                name: "이상한 나라의 엘리스",
-                color: "#" + getRandomColor(),
-                image : "이상한나라의앨리스.jpg",
-                desc : " 7살짜리 여자아이 앨리스가 토끼굴을 타고 떨어져서 도착한 이상한 나라에서 겪는 모험이야기를 그리고 있다."
-            }, {
-                name: "노인과바다",
-                color: "#" + getRandomColor(),
-                image : "노인과바다.jpg",
-                desc : "한때는 잘 나가는 선원이자 어부였으나, 불운을 만나 84일간 매일 바다에 나가면서도 아무 고기도 못 잡은 채 바다 위를 표류하다가 귀항하는 노인 산티아고와, 그가 무소득 84일 만에 낚은 청새치, 그리고 이 청새치를 노리는 상어들의 이야기"
-            }, {
-                name: "어린왕자",
-                color: "#" + getRandomColor(),
-                image : "어린왕자.jpg",
-                desc : "사하라 사막에 불시착한 조종사가 자기의 작은 별에서 여러 별들을 거쳐서 드디어 지상에 내려온 소년의 이야기를 듣고 결국 소년이 뱀에게 물려 자신의 별로 돌아갈 때까지의 이야기이다."
-            }, {
-                name: "홍길동전",
-                color: "#" + getRandomColor(),
-                image : "홍길동전.jpg",
-                desc : " 1612년 허균이 지은 것으로 알려진 한글 소설[1]이다. 의적 홍길동을 소재로 한 내용이다."
-            }, {
-                name: "장화홍련전",
-                color: "#" + getRandomColor(),
-                image : "장화홍련전.jpg",
-                desc : "한글로 쓰인 작자·연대 미상의 고대 소설. 세종 때, 철산(鐵山)의 배 좌수(裵座守)의 딸 장화와 홍련이 계모 허씨(許氏)와 그가 데리고 온 장쇠의 학대로 죽어 원혼(冤魂)이 되어 부사(府使) 정동우(鄭東祐)를 만나 자초지종을 일러 원수를 갚았다는 이야기"
-            }, {
-                name: "이솝우화",
-                color: "#" + getRandomColor(),
-                image : "이솝우화.jpg",
-                desc : "이야기꾼 이솝이 지은 이야기를 모은 책"
-            }, {
-                name: "80일간의 세계일주",
-                color: "#" + getRandomColor(),
-                image : "80일간의세계일주.jpg",
-                desc : "영국 런던에서 사는 필리어스 포그와 하인 파스파르투가 80일동안 세계를 여행하는 이야기"
-            }, {
-                name: "열하일기",
-                color: "#" + getRandomColor(),
-                image : "열하일기.jpg",
-                desc : "연암 박지원이 건륭제의 70세 생일을 축하하는 사절로 청나라에 다녀온 일을 적은 여행기"
-            }, {
-                name: "베니스의상인",
-                color: "#" + getRandomColor(),
-                image : "베니스의상인.jpg",
-                desc : "베네치아의 상인 안토니오는 친구 바사니오로부터 벨몬트에 사는 포셔에게 구혼하기 위한 여비를 마련해 달라는 부탁을 받아, 가지고 있는 배를 담보로 하여 유대인 고리대금업자 샤일록에게 돈을 빌린다."
-            }, {
-                name: "빨간머리앤",
-                color: "#" + getRandomColor(),
-                image : "빨간머리앤.jpg",
-                desc : "캐나다의 여성작가 루시 모드 몽고메리의 1908년작 소설이다"
-            }, {
-                name: "소나기",
-                color: "#" + getRandomColor(),
-                image : "소나기.jpg",
-                desc : " 황순원 집필의 단편소설. 사춘기 소년과 소녀의 첫사랑을 서정적으로 그린 작품이다. "
-            }];
-            shuffle(books);
-
-            books.forEach( function( book){
-                var $scatterBook = $('<div class="scatter" data-name="'+book.name+'"></div>');
-                //$scatterBook.css("background-color" , book.color);
-                
-                $scatterBook.css("background-image" , 'url( "img/'+book.image+'" )');
-                $(".bookTable").append($scatterBook);
-            });
-
-            shuffle(books);
-
-            books.forEach( function( book){
-                var $slot = $('<div class="slot" data-name="'+book.name+'">'+book.desc+'</div>');
-                //$slot.css("background-color", book.color);
-                $(".library").append($slot);
-            });
-
-            $(".scatter").draggable({
-                revert: true,
-                cursor: "move",
-                opacity: 0.8,
-                stack: ".scatter", 
-                start : function( event, ui){
-                    $(".scatter").css("zIndex",10);
-                    $(this).css("zIndex", 100);
-                }
-            });
-
-            $(".slot").droppable({
-                accept: ".scatter",
-                classes: {
-                    "ui-droppable-active": "ui-state-active",
-                    "ui-droppable-hover": "ui-state-hover"
-                },
-                drop : function( event, ui){
-                    var slotName = $(this).data("name");
-                    var bookName = ui.draggable.data("name");
-
-                    if( slotName == bookName){
-                        ui.draggable.draggable("option", "revert", false);
-                        var droppableOffset = $(this).offset();
-                        var x = droppableOffset.left + 1;
-                        var y = droppableOffset.top + 1;
-                        ui.draggable.offset({ top: y, left: x });
-                        $( this ).addClass( "ui-state-highlight" )
-                    }
-                }
-            });
-        });
-
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        function shuffle(array) {
-                var currentIndex = array.length, temporaryValue, randomIndex;
-
-                // While there remain elements to shuffle...
-                while (0 !== currentIndex) {
-
-                    // Pick a remaining element...
-                    randomIndex = Math.floor(Math.random() * currentIndex);
-                    currentIndex -= 1;
-
-                    // And swap it with the current element.
-                    temporaryValue = array[currentIndex];
-                    array[currentIndex] = array[randomIndex];
-                    array[randomIndex] = temporaryValue;
-                }
-
-                return array;
-            }
+       
     </script>
 
 </body>

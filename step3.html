@@ -1,0 +1,400 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- bower:css -->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- endbower -->
+</head>
+<style>
+ 
+    .library {
+        border: solid #e3e3e3 1px;
+        height: 400px;
+        background-image: url( "img/lib_1.jpg" );
+        padding: 25px 30px 0px 30px;
+    }
+
+    .bookTable {
+        padding: 25px 30px 0px 30px;
+        margin-top : 30px;
+        border: solid #f3f3f3 1px;
+        height: 400px;
+        background-image: url( "img/desk.jpg" );
+    }
+
+    .scatter {
+        width: 40px;
+        height: 320px;
+        background: #fff ;
+        float: left;
+        border: #4d5355 solid 1px;
+        text-align: center;
+        box-shadow: #4d5355 2px 2px 2px;
+        margin: 5px 5px;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+
+    .slot {
+        width: 44px;
+        height: 324px;
+        border: solid 1px #434343;
+        float : left;
+        margin : 10px 5px 45px 5px;
+        background-color: #fff ;
+        opacity: 0.8;
+        font-size: 8px;
+        overflow :auto;
+        border-radius: 4px;   
+    }
+
+    .slot-title {
+        position: absolute;
+        width : 44px;
+        height : 324px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        border-bottom: solid 1px #434343;
+    }
+
+    .slot-body {
+        width : 100%;
+        height : 100%;
+    }
+</style>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    3단계 청구기호 순으로 책꽂이에 꽂기
+                </h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="library">
+                    
+                </div>
+            
+                <div class="bookTable">
+                </div>
+            </div>
+        </div>
+</div>
+    
+
+
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            var books = [{
+                name: "029",
+                color: "#" + getRandomColor(),
+                image : "./img/code/1.png",
+                desc : "029"
+            },{
+                name: "031",
+                color: "#" + getRandomColor(),
+                image : "./img/code/2.png",
+                desc : "031"
+            },{
+                name: "150",
+                color: "#" + getRandomColor(),
+                image : "./img/code/3.png",
+                desc : "150"
+            },{
+                name: "219",
+                color: "#" + getRandomColor(),
+                image : "./img/code/4.png",
+                desc : "219"
+            },{
+                name: "239",
+                color: "#" + getRandomColor(),
+                image : "./img/code/5.png",
+                desc : "239"
+            },{
+                name: "309",
+                color: "#" + getRandomColor(),
+                image : "./img/code/6.png",
+                desc : "309"
+            },{
+                name: "336",
+                color: "#" + getRandomColor(),
+                image : "./img/code/7.png",
+                desc : "336"
+            },{
+                name: "388",
+                color: "#" + getRandomColor(),
+                image : "./img/code/8.png",
+                desc : "388"
+            },{
+                name: "410",
+                color: "#" + getRandomColor(),
+                image : "./img/code/9.png",
+                desc : "410"
+            },{
+                name: "443",
+                color: "#" + getRandomColor(),
+                image : "./img/code/10.png",
+                desc : "443"
+            },{
+                name: "457",
+                color: "#" + getRandomColor(),
+                image : "./img/code/11.png",
+                desc : "457"
+            },{
+                name: "472",
+                color: "#" + getRandomColor(),
+                image : "./img/code/12.png",
+                desc : "472"
+            },{
+                name: "481",
+                color: "#" + getRandomColor(),
+                image : "./img/code/13.png",
+                desc : "481"
+            },{
+                name: "510",
+                color: "#" + getRandomColor(),
+                image : "./img/code/14.png",
+                desc : "510"
+            },{
+                name: "529",
+                color: "#" + getRandomColor(),
+                image : "./img/code/15.png",
+                desc : "529"
+            },{
+                name: "539",
+                color: "#" + getRandomColor(),
+                image : "./img/code/16.png",
+                desc : "539"
+            },{
+                name: "540",
+                color: "#" + getRandomColor(),
+                image : "./img/code/17.png",
+                desc : "540"
+            },{
+                name: "634",
+                color: "#" + getRandomColor(),
+                image : "./img/code/18.png",
+                desc : "634"
+            },{
+                name: "650",
+                color: "#" + getRandomColor(),
+                image : "./img/code/19.png",
+                desc : "650"
+            },{
+                name: "670",
+                color: "#" + getRandomColor(),
+                image : "./img/code/20.png",
+                desc : "670"
+            },{
+                name: "688",
+                color: "#" + getRandomColor(),
+                image : "./img/code/21.png",
+                desc : "688"
+            },{
+                name: "695",
+                color: "#" + getRandomColor(),
+                image : "./img/code/22.png",
+                desc : "695"
+            },{
+                name: "711",
+                color: "#" + getRandomColor(),
+                image : "./img/code/23.png",
+                desc : "711"
+            },{
+                name: "715",
+                color: "#" + getRandomColor(),
+                image : "./img/code/24.png",
+                desc : "715"
+            },{
+                name: "811",
+                color: "#" + getRandomColor(),
+                image : "./img/code/25.png",
+                desc : "811"
+            },{
+                name: "811방72ㅎv.1",
+                color: "#" + getRandomColor(),
+                image : "./img/code/26.png",
+                desc : "811방72ㅎv.1"
+            },{
+                name: "811방72ㅎv.2",
+                color: "#" + getRandomColor(),
+                image : "./img/code/27.png",
+                desc : "811방72ㅎv.2"
+            },{
+                name: "813",
+                color: "#" + getRandomColor(),
+                image : "./img/code/28.png",
+                desc : "813"
+            },{
+                name: "823",
+                color: "#" + getRandomColor(),
+                image : "./img/code/29.png",
+                desc : "823"
+            },{
+                name: "833",
+                color: "#" + getRandomColor(),
+                image : "./img/code/30.png",
+                desc : "833"
+            },{
+                name: "833다68ㄴ",
+                color: "#" + getRandomColor(),
+                image : "./img/code/31.png",
+                desc : "833다68ㄴ"
+            },{
+                name: "843",
+                color: "#" + getRandomColor(),
+                image : "./img/code/32.png",
+                desc : "843"
+            },{
+                name: "911",
+                color: "#" + getRandomColor(),
+                image : "./img/code/33.png",
+                desc : "911"
+            },{
+                name: "911문73ㅇ",
+                color: "#" + getRandomColor(),
+                image : "./img/code/34.png",
+                desc : "911문73ㅇ"
+            },];
+
+            //shuffle(books);
+            var pickedBookIndexs = getRandomNoDuplicate(0, 33, 18);
+            pickedBookIndexs.sort(function(a, b){return parseInt(a)-parseInt(b)});
+            var pickedBooks = [];
+            for( var i = 0 ; i < pickedBookIndexs.length; i++){
+                var book = books[pickedBookIndexs[i]];
+                book.isBlank = false;
+                pickedBooks.push(book);
+            }
+
+            var blankPositions = getRandomNoDuplicate(0, 18, 6);
+            for( var i=0; i< blankPositions.length; i++){
+                if(pickedBooks[blankPositions[i]]){
+                    var book = pickedBooks[blankPositions[i]];
+                    book.isBlank = true;
+                }
+            }
+
+            pickedBooks.forEach( function( book){
+                var $slot = $('<div class="slot" data-name="'+book.name+'"><div class="slot-title"></div><div class="slot-body"></div></div>');
+                if( !book.isBlank)
+                    $slot.find(".slot-title").append($("<img src='"+book.image+"' width='100%' >"));
+                $(".library").append($slot);
+            });
+
+            shuffle(pickedBooks);
+
+            pickedBooks.forEach( function( book){
+                if( book.isBlank){
+                    var $scatterBook = $('<div class="scatter" ></div>');
+                    //$scatterBook.css("background-color" , book.color);
+                    $scatterBook.append($("<img src='"+book.image+"' width='100%' data-name='"+book.name+"'>"));
+                    //$scatterBook.css("background-image" , 'url( "'+book.image+'" )');
+                    $(".bookTable").append($scatterBook);
+                }
+            });
+
+        
+
+            
+
+            $(".scatter").draggable({
+                revert: true,
+                cursor: "move",
+                opacity: 0.8,
+                stack: ".scatter", 
+                start : function( event, ui){
+                    $(".scatter").css("zIndex",10);
+                    $(this).css("zIndex", 100);
+                }
+            });
+
+            $(".slot-body").droppable({
+                accept: ".scatter",
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop : function( event, ui){
+                    var slotName = $(this).data("name");
+                    var bookName = ui.draggable.data("name");
+
+                    if( slotName == bookName){
+                        ui.draggable.draggable("option", "revert", false);
+                        var droppableOffset = $(this).offset();
+                        var x = droppableOffset.left + 1;
+                        var y = droppableOffset.top + 1;
+                        ui.draggable.offset({ top: y, left: x });
+                        $( this ).addClass( "ui-state-highlight" )
+                    }
+                }
+            });
+        });
+
+        function getRandomNoDuplicate(min, max, choice) {
+
+            var bgArray = [];
+            var bgResult = [];
+            var bgNum;
+
+            for (i=min; i<=max; i++) { 
+                bgArray.push(i); 
+            } 
+            for (i=0; i<choice; i++) { 
+                bgNum=Math.floor(Math.random() * bgArray.length);
+                bgResult.push(bgArray[bgNum]); // 랜덤으로 선택된 숫자 순서대로 bgReult에 저장 
+                bgArray.splice(bgNum, 1); // 선택된 숫자 bgArray에서 삭제, 중복 선택 방지 
+            } 
+            //bgResult=bgResult.join(', ');
+            return bgResult;
+        }
+        
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+    </script>
+
+</body>
+
+</html>
