@@ -15,6 +15,7 @@
         height: 400px;
         background-image: url( "img/lib_1.jpg" );
         padding: 25px 30px 0px 30px;
+        overflow-y: atuo;
     }
 
     .bookTable {
@@ -273,8 +274,11 @@
                 desc : "911문73ㅇ"
             },];
 
+            var bookselfCount = 24;
+            var blankCount = 8;
+
             //shuffle(books);
-            var pickedBookIndexs = getRandomNoDuplicate(0, 33, 18);
+            var pickedBookIndexs = getRandomNoDuplicate(0, 33, bookselfCount);
             pickedBookIndexs.sort(function(a, b){return parseInt(a)-parseInt(b)});
             var pickedBooks = [];
             for( var i = 0 ; i < pickedBookIndexs.length; i++){
@@ -283,7 +287,7 @@
                 pickedBooks.push(book);
             }
 
-            var blankPositions = getRandomNoDuplicate(0, 18, 6);
+            var blankPositions = getRandomNoDuplicate(0, bookselfCount-1, blankCount);
             for( var i=0; i< blankPositions.length; i++){
                 if(pickedBooks[blankPositions[i]]){
                     var book = pickedBooks[blankPositions[i]];
