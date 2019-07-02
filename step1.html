@@ -161,9 +161,9 @@
             shuffle(books);
 
             books.forEach( function( book){
-                var $scatterBook = $('<div class="scatter" ></div>');
+                var $scatterBook = $('<div class="scatter" data-name="'+book.name+'"></div>');
                 //$scatterBook.css("background-color" , book.color);
-                $scatterBook.append($("<img src='"+book.image+"' width='100%' data-name='"+book.name+"'>"));
+                $scatterBook.append($("<img src='"+book.image+"' width='100%' >"));
                 //$scatterBook.css("background-image" , 'url( "'+book.image+'" )');
                 $(".bookTable").append($scatterBook);
             });
@@ -190,7 +190,7 @@
                     "ui-droppable-hover": "ui-state-hover"
                 },
                 drop : function( event, ui){
-                    var slotName = $(this).data("name");
+                    var slotName = $(this).parent().data("name");
                     var bookName = ui.draggable.data("name");
 
                     if( slotName == bookName){
