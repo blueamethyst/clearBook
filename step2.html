@@ -11,11 +11,29 @@
 <style>
  
     .library {
+        position: relative;
         border: solid #e3e3e3 1px;
         height: 620px;
-        background-image: url( "img/lib_1.jpg" );
+        
         padding: 75px 50px 0px 50px;
+        overflow: hidden;
     }
+
+    .library_back {
+        background-image: url( "img/shelf_single.jpg" );
+        position:absolute;
+        background-size:100%;
+        opacity:0.3!important;
+        filter:alpha(opacity=30);
+        z-index:-1;
+        content:"";
+        left:0px;
+        top : 0px;
+        width:100%;
+        height:100%;
+    }
+
+
 
     .bookTable {
         margin-top : 30px;
@@ -41,15 +59,16 @@
 
     .slot {
         width: 64px;
-        height: 510px;
+        height: 505px;
         border: solid 1px #434343;
         float : left;
         margin : 10px 5px 45px 5px;
         background-color: #fff ;
         opacity: 0.8;
         font-size: 8px;
-        overflow :auto;
-        border-radius: 5px;
+        overflow :hidden;
+        border-radius: 9px;
+        box-shadow: #4d5355 2px 2px 2px;
     }
 
     .slot-title {
@@ -70,7 +89,10 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-bottom: 10px;margin-top: 10px;">
+                <a class="btn btn-success btn-sm" href="./index.html">이전 단계로</a>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 10px;">
                 <h1>
                     2단계 책등 제목을 보고 청구기호 붙이기
                 </h1>
@@ -79,6 +101,7 @@
         <div class="row ">
             <div class="col-md-12">
                 <div class="library">
+                    <div class="library_back"></div>
                     
                 </div>
             
@@ -119,6 +142,12 @@
                 imageA : "./img/back/200-a.png",
                 desc : "200"
             },{
+                name: "201",
+                color: "#" + getRandomColor(),
+                image : "./img/back/201-q.png",
+                imageA : "./img/back/201-a.png",
+                desc : "201"
+            },{
                 name: "300",
                 color: "#" + getRandomColor(),
                 image : "./img/back/300-q.png",
@@ -136,6 +165,12 @@
                 image : "./img/back/500-q.png",
                 imageA : "./img/back/500-a.png",
                 desc : "500"
+            },{
+                name: "501",
+                color: "#" + getRandomColor(),
+                image : "./img/back/501-q.png",
+                imageA : "./img/back/501-a.png",
+                desc : "501"
             },{
                 name: "600",
                 color: "#" + getRandomColor(),
