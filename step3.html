@@ -12,7 +12,7 @@
  
     .library {
         border: solid #e3e3e3 1px;
-        height: 500px;
+        height: 450px;
         padding: 30px 30px 0px 30px;
         overflow-y: atuo;
         position: relative;
@@ -39,10 +39,10 @@
     .bookTable {
         padding: 25px 30px 0px 30px;
         border: solid #f3f3f3 1px;
-        height: 500px;
+        height: 450px;
         
         position: relative;
-        border: solid 2px #a3a3a3;
+        border: solid 2px #745f5f;
     }
 
     .bookTable_back {
@@ -103,6 +103,16 @@
         width : 100%;
         height : 100%;
     }
+
+    .bookTableTitle {
+        border : solid 1px #888888;
+        background-color: #FAFABE;
+        border-radius: 8px;
+        font-size : 16px;
+        font-weight: 600;
+        padding: 5px 5px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <body>
@@ -113,7 +123,7 @@
             </div>
             <div class="col-md-12" style="margin-bottom: 10px;">
                 <h1>
-                    3단계 청구기호 순으로 책꽂이에 꽂기
+                    3단계 : 청구기호로 책 꽂기
                 </h1>
             </div>
         </div>
@@ -135,6 +145,7 @@
                         <div class="library_back"></div>
                 </div>
                 <div class="bookTable">
+                    <div class="bookTableTitle">정리할 책</div>
                     <div class="bookTable_back"></div>
                 </div>
             </div>
@@ -323,7 +334,17 @@
                 color: "#" + getRandomColor(),
                 image : "./img/code/34.png",
                 desc : "911문73ㅇ"
-            },];
+            },{
+                name: "980",
+                color: "#" + getRandomColor(),
+                image : "./img/code/35.png",
+                desc : "980"
+            },{
+                name: "991",
+                color: "#" + getRandomColor(),
+                image : "./img/code/36.png",
+                desc : "991"
+            }];
 
             var bookselfCount = 34;
             var blankCount = 8;
