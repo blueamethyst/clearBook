@@ -54,13 +54,11 @@
 
 
     <script>
-
-
        $(function () {
             var name = localStorage.getItem("clearBook-name");
 
 
-            if( typeof name === "undefined" || name == ""){
+            if( typeof name === "undefined" || name == "" || name == null){
                 window.location = "./login/login.html";
             }
        });
