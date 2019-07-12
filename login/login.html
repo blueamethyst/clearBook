@@ -77,7 +77,7 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<script src="../js/cookie.js"></script>
+	<script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
 
 
 	<script>
@@ -87,7 +87,7 @@
 				var pass = $(this).find("input[name='pass']").val();
 
 				if( name == "admin" && pass == "admin"){
-					setCookie("clearBook", name, 30); 
+					$.cookie("clearBook", name);
 					window.location = "../index.html";
 				} else {
 					alert("잘못된 아이디 혹은 패스워드입니다.");
