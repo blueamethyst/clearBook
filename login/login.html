@@ -87,7 +87,9 @@
 				var pass = $(this).find("input[name='pass']").val();
 
 				if( name == "admin" && pass == "admin"){
-					$.cookie("clearBook", name);
+					localStorage.setItem('clearBook-name', name);
+					
+					
 					window.location = "../index.html";
 				} else {
 					alert("잘못된 아이디 혹은 패스워드입니다.");

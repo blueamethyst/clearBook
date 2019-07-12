@@ -57,10 +57,10 @@
 
 
        $(function () {
-            var cookieValue = $.cookie("clearBook");
+            var name = localStorage.getItem("clearBook-name");
 
 
-            if( typeof cookieValue === "undefined" || cookieValue == ""){
+            if( typeof name === "undefined" || name == ""){
                 window.location = "./login/login.html";
             }
        });
